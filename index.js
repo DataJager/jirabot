@@ -200,15 +200,25 @@ controller.hears(['([A-Z]{2,4}-[0-9]{0,5})(.*)',],
             items.forEach(function(item){
 
                     var descriptor = item[0];
+                    var objectName = item[2];
                     var messageIfNull = item[2];
                     var printIfnull = item[3];
                     try {
-                      //Load the value and apply the character limit
+
+
                       var value = eval(item[1]);
+                      //Apply Character Limit
                       if (value.length > character_limit ){
                         value = value.substring(0, character_limit);
                         value = value.substring(0, Math.min(value.length, value.lastIndexOf(" ")));
                         value += '...';
+                      }
+                      //if date, format date to be readable
+                      if (objectName = 'issue.fields.updated'){
+                        //format date
+                        var moment = require('moment'); //get the 'moment' library
+                        var m = moment(value);
+                        value = moment.format("LLL");
                       }
 
                       //The above line should throw an error if the value is null
