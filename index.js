@@ -4,6 +4,86 @@ var jiraWebsite = "https://jira.libredigital.com/";
 var botname = "jirabot";
 var character_limit = 280;
 //LookupTable for ProjectKeys
+var moment = require('moment');
+const pidTable = {
+  'AP':11050,
+  'BLU':10144,
+  'CDT':10120,
+  'DOPS':10450,
+  'HRV':10750
+}
+//LookupTable for issue Types
+const issueTypeTable = {
+  'bug':1,
+  'new feature':2,
+  'improvement':4,
+  'sub-task': 5,
+  'epic': 6,
+  'story': 7,
+  'task': 8,
+  'services ticket': 12,
+/moment
+                      var value = eval(item[1]);
+Moment  2018-08-07T17:52:22-05:00
+^C
+bash-4.2$ vi index.js
+bash-4.2$ CLIENT_ID=349798510594.411453369876 CLIENT_SECRET=aef8c0bf369a736c3d9f31045e64d5b6 JIRABOT_USERNAME=rr505635 JIRABOT_PASSWORD=Psycorps1 PORT=8765 npm start
+
+> easy-peasy-bot@1.0.0 start /home/jirabot/jirabot
+> node index.js
+
+info: ** Using simple storage. Saving data to ./db_slack_bot_a/
+info: ** Setting up custom handlers for processing Slack messages
+info: ** Configuring app as a Slack App!
+info: ** Starting webserver on port 8765
+info: ** Serving webhook endpoints for Slash commands and outgoing webhooks at: http://MY_HOST:8765/slack/receive
+info: ** Serving login URL: http://MY_HOST:8765/login
+info: ** Serving oauth return endpoint: http://MY_HOST:8765/oauth
+info: ** API CALL: https://slack.com/api/rtm.start
+notice: ** BOT ID: jirabot ...attempting to connect to RTM!
+notice: RTM websocket opened
+Date  | 2018-08-07T17:52:22.000-0500|
+Moment  August 7, 2018 5:52 PM
+:wq
+^[[A^[[B^C
+bash-4.2$ vi index.js
+bash-4.2$ CLIENT_ID=349798510594.411453369876 CLIENT_SECRET=aef8c0bf369a736c3d9f31045e64d5b6 JIRABOT_USERNAME=rr505635 JIRABOT_PASSWORD=Psycorps1 PORT=8765 npm start
+
+> easy-peasy-bot@1.0.0 start /home/jirabot/jirabot
+> node index.js
+
+info: ** Using simple storage. Saving data to ./db_slack_bot_a/
+info: ** Setting up custom handlers for processing Slack messages
+info: ** Configuring app as a Slack App!
+info: ** Starting webserver on port 8765
+info: ** Serving webhook endpoints for Slash commands and outgoing webhooks at: http://MY_HOST:8765/slack/receive
+info: ** Serving login URL: http://MY_HOST:8765/login
+info: ** Serving oauth return endpoint: http://MY_HOST:8765/oauth
+info: ** API CALL: https://slack.com/api/rtm.start
+notice: ** BOT ID: jirabot ...attempting to connect to RTM!
+notice: RTM websocket opened
+^C
+bash-4.2$ git commit -m "Fixed some issue with date formatting with moment() "
+
+*** Please tell me who you are.
+
+Run
+
+  git config --global user.email "you@example.com"
+  git config --global user.name "Your Name"
+
+to set your account's default identity.
+Omit --global to set the identity only in this repository.
+
+fatal: empty ident name (for <jirabot@amlnx-ldx-jbot.libredigital.prscoad.com>) not allowed
+bash-4.2$ cat index.js
+//Begin Global Variables
+//Variable to hold the JIRA Website in case it changes
+var jiraWebsite = "https://jira.libredigital.com/";
+var botname = "jirabot";
+var character_limit = 280;
+//LookupTable for ProjectKeys
+var moment = require('moment');
 const pidTable = {
   'AP':11050,
   'BLU':10144,
@@ -214,12 +294,9 @@ controller.hears(['([A-Z]{2,4}-[0-9]{0,5})(.*)',],
                         value += '...';
                       }
                       //if date, format date to be readable
-                      if (objectName = 'issue.fields.updated'){
-                        //format date
-                        var moment = require('moment'); //get the 'moment' library
-                        var m = moment(value);
-                        value = moment.format("LLL");
-                        console.log(value);
+                      if (objectName == 'issue.fields.updated'){
+                        var m = moment(value.trim());
+			                  value = m.format( "LLL");
                       }
 
                       //The above line should throw an error if the value is null
