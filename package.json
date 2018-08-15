@@ -27,6 +27,7 @@
   "dependencies": {
     "botkit": "0.2.2",
     "botkit-storage-mongo": "^1.0.2",
+    "jira-connector": "^2.8.0",
     "log4js": "^3.0.5",
     "moment": "^2.22.2",
     "mongodb": "^1.4.39"
