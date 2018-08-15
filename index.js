@@ -200,7 +200,7 @@ controller.hears(['([A-Z]{2,4}-[0-9]{0,5})(.*)',],
             items.forEach(function(item){
 
                     var descriptor = item[0];
-                    var objectName = item[2];
+                    var objectName = item[1];
                     var messageIfNull = item[2];
                     var printIfnull = item[3];
                     try {
@@ -219,6 +219,7 @@ controller.hears(['([A-Z]{2,4}-[0-9]{0,5})(.*)',],
                         var moment = require('moment'); //get the 'moment' library
                         var m = moment(value);
                         value = moment.format("LLL");
+                        console.log(value);
                       }
 
                       //The above line should throw an error if the value is null
